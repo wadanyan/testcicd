@@ -17,11 +17,11 @@ executors:
   android:
     machine:
       image: ubuntu
-      working_directory: "~/automation-test"
+    working_directory: "~/automation-test"
   ios:
     machine:
       image: ubuntu
-      working_directory: "~/automation-test"
+    working_directory: "~/automation-test"
 
 jobs:
   # check job
