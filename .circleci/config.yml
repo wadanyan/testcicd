@@ -16,12 +16,10 @@ workflows:
 executors:
   android:
     machine:
-      image: android:202102-01
-    working_directory: "~/automation-test"
+      image: ubuntu
   ios:
-    macos:
-      xcode: 12.5.1
-    working_directory: "~/automation-test"
+    machine:
+      image: ubuntu
 
 jobs:
   # check job
