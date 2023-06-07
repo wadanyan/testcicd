@@ -19,7 +19,7 @@ commands:
   hello_generic_cmd:
     parameters:
       placeName:
-        type:string
+        type: string
     steps:
       - run: echo Hello, <<parameters.placeName>>
 
