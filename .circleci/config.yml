@@ -1,5 +1,11 @@
 version: 2.1
 
+workflows:
+  hello_place:
+    jobs:
+      - hello_tokyo
+      - hello_osaka
+
 executors:
   hello_executors:
     docker:
@@ -31,8 +37,4 @@ jobs:
        - hello_generic_cmd:
            placeName: "osaka"
 
-workflows:
-  hello_place:
-    jobs:
-      -hello_tokyo
-      -hello_osaka
+
