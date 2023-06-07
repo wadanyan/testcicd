@@ -1,91 +1,29 @@
 version: 2.1
 
-workflows:
-  e2e:
-    jobs:
-      - check
-
-      - run_test_android:
-          requires:
-            - check
-
-      - run_test_ios:
-          requires:
-            - check
-
 executors:
-  android:
-    machine:
-      image: android:202102-01
-    working_directory: "~/automation-test"
-  ios:
-    macos:
-      xcode: 12.5.1
-    working_directory: "~/automation-test"
-
+	hello_executors:
+		docker:
+			-image: cimg/base:<<parameters.tag>>
+		parameters:
+			tag:
+				default : "2021.007"
+				type: string
 jobs:
-  # check job
-  check:
-    docker:
-      - image: cimg/base:2021.04
-    steps:
-      - run_check
+	hello_tokyo:
+		executor: hello_executor
+		steps:
+			- checkout
+			- hello_generic_cmd:
+					placeName: "tokyo"
+	hello_osaka:
+			executor: hello_executor
+			steps:
+				- checkout
+				- hello_generic_cmd:
+						placeName: "osaka"
 
-  # run_test_android job
-  run_test_android:
-    executor: android
-    steps:
-      - checkout
-      - run_test:
-          os: "android"
-
-  # run_test_ios job
-  run_test_ios:
-    executor: ios
-    steps:
-      - checkout
-      - run_test:
-          os: "ios"
-
-commands:
-  # run_check command
-  run_check:
-    steps:
-      - run:
-          name: チェック
-          command: |
-            echo "hoge"
-
-  # run_test command
-  run_test:
-    parameters:
-      os:
-        type: string
-    steps:
-      - when:
-          condition:
-            equal: ["ios", << parameters.os >>]
-          steps:
-            - run:
-                name: iOS用の設定
-                command: |
-                  echo "hoge"
-
-      - run:
-          name: Appiumのインストール及び起動
-          command: |
-            npm install -g appium
-            appium
-          background: true
-
-      - run:
-          name: テスト実行
-          no_output_timeout: 2h
-          command: |
-            echo "hoge"
-
-      - run:
-          name: レポート生成
-          command: |
-            echo "hoge"
-          when: always
+workflows:
+  hello_place:
+    jobs:
+      -hello_tokyo
+      -hello_osaka
