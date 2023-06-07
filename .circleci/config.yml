@@ -28,6 +28,7 @@ jobs:
   hello_tokyo:
     executor: hello_executor:
     steps:
+      - checkout
       - hello_generic_cmd:
           placeName: "tokyo"
           
