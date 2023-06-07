@@ -5,6 +5,7 @@ workflows:
     jobs:
       - hello_tokyo
       - hello_osaka
+      - hello_test
 
 executors:
   hello_executor:
@@ -12,12 +13,14 @@ executors:
       - image: cimg/base:<<parameters.tag>>
     parameters:
       tag:
+        default: "2021.07"
         type: string
 
 commands:
   hello_generic_cmd:
     parameters:
       placeName:
+        default: "test"
         type: string
     steps:
       - run: echo Hello, <<parameters.placeName>>
@@ -26,8 +29,6 @@ jobs:
   hello_tokyo:
     executor: 
       name: hello_executor
-      parameters:
-        tag: "2021.08"
     steps:
       - checkout
       - hello_generic_cmd:
@@ -39,5 +40,10 @@ jobs:
       - checkout
       - hello_generic_cmd:
           placeName: "osaka"
+  hello_test:
+    executor: hello_executor
+    steps:
+      - checkout
+      - hello_generic_cmd:
 
 
