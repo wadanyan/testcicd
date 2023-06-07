@@ -9,6 +9,14 @@ executors:
         default : "2021.007"
         type: string
 
+commands:
+  hello_generic_cmd:
+    parameters:
+      placeName:
+        type:string
+    steps:
+      - run: echo Hello, <<parameters.placeName>>
+
 jobs:
   hello_tokyo:
     executor: hello_executor
