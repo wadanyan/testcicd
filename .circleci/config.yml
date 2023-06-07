@@ -12,7 +12,7 @@ executors:
       - image: cimg/base:<<parameters.tag>>
     parameters:
       tag:
-        default : "2021.007"
+        default : "2021.07"
         type: string
 
 commands:
