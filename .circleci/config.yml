@@ -26,12 +26,14 @@ commands:
 jobs:
   hello_tokyo:
     executor: 
-      - hello_executor:
-        tag: "2021.08"
+      name: hello_executor
+        parameters:
+          tag: "2021.08"
     steps:
       - checkout
       - hello_generic_cmd:
           placeName: "tokyo"
+          
   hello_osaka:
     executor: hello_executor
     steps:
