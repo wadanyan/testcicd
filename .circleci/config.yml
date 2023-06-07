@@ -44,6 +44,6 @@ jobs:
     executor: hello_executor
     steps:
       - checkout
-      - hello_generic_cmd:
+      - hello_generic_cmd
 
 
