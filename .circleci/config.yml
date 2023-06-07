@@ -1,26 +1,27 @@
 version: 2.1
 
 executors:
-	hello_executors:
-		docker:
-			-image: cimg/base:<<parameters.tag>>
-		parameters:
-			tag:
-				default : "2021.007"
-				type: string
+ hello_executors:
+  docker:
+   - image: cimg/base:<<parameters.tag>>
+  parameters:
+   tag:
+    default : "2021.007"
+    type: string
+
 jobs:
-	hello_tokyo:
-		executor: hello_executor
-		steps:
-			- checkout
-			- hello_generic_cmd:
-					placeName: "tokyo"
-	hello_osaka:
-			executor: hello_executor
-			steps:
-				- checkout
-				- hello_generic_cmd:
-						placeName: "osaka"
+ hello_tokyo:
+  executor: hello_executor
+   steps:
+   - checkout
+   - hello_generic_cmd:
+     placeName: "tokyo"
+  hello_osaka:
+   executor: hello_executor
+   steps:
+    - checkout
+    - hello_generic_cmd:
+     placeName: "osaka"
 
 workflows:
   hello_place:
