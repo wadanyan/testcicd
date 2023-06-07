@@ -7,7 +7,7 @@ workflows:
       - hello_osaka
 
 executors:
-  hello_executors:
+  hello_executor:
     docker:
       - image: cimg/base:<<parameters.tag>>
     parameters:
