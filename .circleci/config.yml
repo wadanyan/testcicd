@@ -27,6 +27,7 @@ jobs:
   hello_tokyo:
     executor: 
       name: hello_executor
+      parameters:
         tag: "2021.08"
     steps:
       - checkout
