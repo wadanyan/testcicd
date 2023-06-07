@@ -25,9 +25,9 @@ commands:
 
 jobs:
   hello_tokyo:
-    executor: hello_executor
-      - parameters:
-        taga: "2021.08"
+    executor: 
+      - hello_executor:
+        tag: "2021.08"
     steps:
       - checkout
       - hello_generic_cmd:
