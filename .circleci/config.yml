@@ -30,11 +30,11 @@ jobs:
       - checkout
       - hello_generic_cmd:
           placeName: "tokyo"
-   hello_osaka:
-     executor: hello_executor
-     steps:
-       - checkout
-       - hello_generic_cmd:
-           placeName: "osaka"
+  hello_osaka:
+    executor: hello_executor
+    steps:
+      - checkout
+      - hello_generic_cmd:
+          placeName: "osaka"
 
 
