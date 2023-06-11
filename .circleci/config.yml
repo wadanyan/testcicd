@@ -52,6 +52,7 @@ jobs:
       env:
         type: enum
         enum: ["dev", "stg", "prod"]
+        default: "dev"
     executor:
       name: hello_executor
     steps:
