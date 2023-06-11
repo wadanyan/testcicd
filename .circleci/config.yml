@@ -6,19 +6,19 @@ workflows:
       - hello_direct
   hello_place:
     jobs:
-      - hello_tokyo
+      - hello_use_executor_command
       - hello_osaka
       - hello_test
   deployplace:
     jobs:
-      - echo_deploy_enviroment:
-          name: deploy_dev
-          env: "stg"
+      - hello_use_executor_command_enum:
+          name: echo_Osaka
+          env: "Osaka"
 
 parameters:
   echosamplename:
     type: string
-    defualt: "Okinawa"
+    default: "Okinawa"
 
 executors:
   hello_executor:
@@ -45,7 +45,7 @@ jobs:
     steps:
       - run: echo Hello, "direct"
         
-  hello_tokyo:
+  hello_use_executor_command:
     executor: hello_executor
     steps:
       - hello_generic_cmd:
@@ -62,17 +62,17 @@ jobs:
     steps:
       - checkout
       - hello_generic_cmd
-  echo_deploy_enviroment:
+  hello_use_executor_command_enum:
     parameters:
       env:
         type: enum
-        enum: ["dev", "stg", "prod"]
+        enum: ["Osaka", "Tokyo", "Nagoya"]
         default: "dev"
     executor:
       name: hello_executor
     steps:
       - checkout
       - run:
-          command: echo Deploy to << parameters.env >> environment
+          command: echo Hello, << parameters.env >>
 
 
