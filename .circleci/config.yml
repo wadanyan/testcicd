@@ -6,6 +6,11 @@ workflows:
       - hello_tokyo
       - hello_osaka
       - hello_test
+  deployplace:
+    jobs:
+      - echo_deploy_enviroment:
+          name: deploy_dev
+          env: dev
 
 executors:
   hello_executor:
@@ -43,5 +48,16 @@ jobs:
     steps:
       - checkout
       - hello_generic_cmd
+  deploy:
+    parameters:
+      env:
+        type: enum
+        enum: ["dev", "stg", "prod"]
+    executor:
+      name: hello_executor
+    steps:
+      - checkout
+      - run:
+          name: Deploy to << parameters.env >> environment
 
 
