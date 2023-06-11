@@ -8,7 +8,6 @@ workflows:
     jobs:
       - hello_use_executor_command
       - hello_osaka
-      - hello_test
   deployplace:
     jobs:
       - hello_use_executor_command_enum:
@@ -54,20 +53,15 @@ jobs:
   hello_osaka:
     executor: hello_executor
     steps:
-      - checkout
       - hello_generic_cmd:
           placeName: "osaka"
-  hello_test:
-    executor: hello_executor
-    steps:
-      - checkout
-      - hello_generic_cmd
+          
   hello_use_executor_command_enum:
     parameters:
       env:
         type: enum
         enum: ["Osaka", "Tokyo", "Nagoya"]
-        default: "dev"
+        default: "Osaka"
     executor:
       name: hello_executor
     steps:
