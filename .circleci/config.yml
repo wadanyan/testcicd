@@ -16,6 +16,9 @@ workflows:
   hello_direct:
     jobs:
       - hello_direct
+  hello_use_executor:
+    jobs:
+      - hello_use_executor
   hello_use_parameter:
     jobs:
       - hello_use_parameter
@@ -66,6 +69,11 @@ jobs:
     steps:
       - run: echo Hello, "direct"
   
+  hello_use_executor:
+    executor:
+      name: hello_executor
+    steps:
+      - run: echo Hello, "Osaka"
   hello_use_parameter:
     docker:
         - image: cimg/base:2021.07
