@@ -48,7 +48,7 @@ jobs:
     steps:
       - checkout
       - hello_generic_cmd
-  deploy:
+  echo_deploy_enviroment:
     parameters:
       env:
         type: enum
