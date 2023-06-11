@@ -4,18 +4,20 @@ workflows:
   hello_direct:
     jobs:
       - hello_direct
-  hello_place:
+  hello_use_parameter:
+    jobs:
+      - hello_use_parameter
+  hello_exexutor_commnad:
     jobs:
       - hello_use_executor_command
-      - hello_osaka
-  deployplace:
+  hello_enum:
     jobs:
       - hello_use_executor_command_enum:
           name: echo_Osaka
           env: "Osaka"
 
 parameters:
-  echosamplename:
+  echoplacename:
     type: string
     default: "Okinawa"
 
@@ -43,18 +45,19 @@ jobs:
         - image: cimg/base:2021.07
     steps:
       - run: echo Hello, "direct"
-        
+  
+  hello_use_parameter:
+    docker:
+        - image: cimg/base:2021.07
+    steps:
+      - run: echo Hello, <<pipeline.parameters.echoplacename>>
+  
   hello_use_executor_command:
     executor: hello_executor
     steps:
       - hello_generic_cmd:
           placeName: "tokyo"
           
-  hello_osaka:
-    executor: hello_executor
-    steps:
-      - hello_generic_cmd:
-          placeName: "osaka"
           
   hello_use_executor_command_enum:
     parameters:
@@ -65,7 +68,6 @@ jobs:
     executor:
       name: hello_executor
     steps:
-      - checkout
       - run:
           command: echo Hello, << parameters.env >>
 
