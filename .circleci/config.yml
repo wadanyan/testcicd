@@ -1,5 +1,16 @@
 version: 2.1
 
+anchor:
+  hello_place_anchor: &hello_place_anchor
+    parameters:
+      env:
+        type: enum
+        enum: ["Osaka", "Tokyo", "Nagoya"]
+        default: "Osaka"
+    steps:
+      - run:
+          command: echo Hello, << parameters.env >>
+
 workflows:
   hello_direct:
     jobs:
@@ -15,6 +26,11 @@ workflows:
       - hello_use_executor_command_enum:
           name: echo_Osaka
           env: "Osaka"
+  hello_use_anchor:
+    jobs:
+      - hello_use_anchor:
+          name: echo_tokyo
+          env: "Tokyo"
 
 parameters:
   echoplacename:
@@ -70,5 +86,10 @@ jobs:
     steps:
       - run:
           command: echo Hello, << parameters.env >>
+  
+  hello_use_anchor:
+    <<: *hello_palce_anchor
+    executor:
+      name: hello_executor
 
 
