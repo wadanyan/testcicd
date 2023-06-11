@@ -10,7 +10,6 @@ workflows:
     jobs:
       - echo_deploy_enviroment:
           name: deploy_dev
-          env: dev
 
 executors:
   hello_executor:
