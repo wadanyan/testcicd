@@ -1,6 +1,9 @@
 version: 2.1
 
 workflows:
+  hello_direct:
+    jobs:
+      - hello_direct
   hello_place:
     jobs:
       - hello_tokyo
@@ -10,6 +13,12 @@ workflows:
     jobs:
       - echo_deploy_enviroment:
           name: deploy_dev
+          env: "stg"
+
+parameters:
+  echosamplename:
+    type: string
+    defualt: "Okinawa"
 
 executors:
   hello_executor:
@@ -30,6 +39,13 @@ commands:
       - run: echo Hello, <<parameters.placeName>>
 
 jobs:
+  hello_direct:
+    executor:
+      docker:
+        - image: cimg/base:2021.07
+    steps:
+      - run: echo Hello, "direct"
+        
   hello_tokyo:
     executor: hello_executor
     steps:
