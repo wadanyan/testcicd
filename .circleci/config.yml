@@ -88,7 +88,7 @@ jobs:
           command: echo Hello, << parameters.env >>
   
   hello_use_anchor:
-    <<: *hello_palce_anchor
+    <<: *hello_place_anchor
     executor:
       name: hello_executor
 
