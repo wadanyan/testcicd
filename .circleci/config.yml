@@ -58,6 +58,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Deploy to << parameters.env >> environment
+          command: Deploy to << parameters.env >> environment
 
 
