@@ -32,4 +32,4 @@ workflows:
     jobs:
       - test:
           # このジョブでslack-tokenコンテキストを利用する
-          context: secrets
+          context: slack-secrets
