@@ -7,7 +7,7 @@ jobs:
       - image: 'cimg/base:stable'
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project frUI env-var refe
+          password: $DOCKERHUB_PASSWORD  # context / project frUI env-var ree
     steps:
       - slack/notify:
           custom: |
