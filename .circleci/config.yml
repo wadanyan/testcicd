@@ -34,5 +34,3 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-          requires:
-            - pause_workflow
