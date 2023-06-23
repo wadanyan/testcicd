@@ -29,7 +29,6 @@ workflows:
               only: /^v.*/
           requires:
             - test
-          type: approval
       - deploy:
           filters:
             tags:
