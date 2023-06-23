@@ -12,7 +12,7 @@ jobs:
       - run:
           command: npm run deploy
       - slack/notify:
-          channel: ABCXYZ
+          channel: #t
           event: pass
           template: success_tagged_deploy_1
 workflows:
