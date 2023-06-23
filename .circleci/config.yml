@@ -23,20 +23,12 @@ workflows:
   test-and-deploy:
     jobs:
       - test
-      - slack/on-hold:
-          context: slack-secrets
-          filters:
-            tags:
-              only: /^v.*/
-          requires:
-            - test
       - pause_workflow:
           filters:
             tags:
               only: /^v.*/
           requires:
             - test
-            - slack/on-hold
           type: approval
       - deploy:
           filters:
