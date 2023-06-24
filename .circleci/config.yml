@@ -1,23 +1,17 @@
 version: '2.1'
 orbs:
-  node: circleci/node:4.1
-  slack: circleci/slack@4.1
+  node: circleci/node@x.y
 jobs:
-  deploy:
-    executor:
-      name: node/default
+  install-node-example:
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-      - node/install-packages
-      - run:
-          command: npm run deploy
-      - slack/notify:
-          channel: #t
-          event: pass
-          template: success_tagged_deploy_1
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
+      - run: node --version
 workflows:
-  deploy_and_notify:
+  test_my_app:
     jobs:
-      - deploy:
-          context:
-            - slack-secrets
+      - install-node-example
