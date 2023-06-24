@@ -1,18 +1,18 @@
 version: '2.1'
 orbs:
-  node: circleci/node@5.1.0
+  python: circleci/python@1.0.0
 jobs:
-  test:
-    executor:
-      name: node/default
-      tag: '13.14'
+  publish:
+    executor: python/default
     steps:
       - checkout
-      - node/install-packages
-      - run:
-          command: npm run test
+      - python/dist
+      - run: pip install twine && twine upload dist/*
 workflows:
-  test_my_app:
+  main:
     jobs:
-      - test
-
+      - python/test:
+          args: '--dev'
+          pkg-manager: pipenv
+          test-tool: pytest
+      - publish
