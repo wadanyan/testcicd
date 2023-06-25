@@ -732,9 +732,7 @@ jobs:
   steps:
     - slack/notify:
       custom: |
-      {
-        "blocks": [
-          {
+        {
             "blocks": [
             {
             "type": "section",
