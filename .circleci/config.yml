@@ -1,18 +1,30 @@
 version: '2.1'
 orbs:
-  python: circleci/python@2.1.1
+  slack: circleci/slack@4.12.5
 jobs:
-  publish:
-    executor: python/default
+  notify:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - checkout
-      - python/dist
-      - run: pip install twine && twine upload dist/*
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
 workflows:
-  main:
+  send-notification:
     jobs:
-      - python/test:
-          args: '--dev'
-          pkg-manager: pipenv
-          test-tool: pytest
-      - publish
+      - notify:
+          context: slack-secrets
