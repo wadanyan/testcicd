@@ -1,10 +1,30 @@
 version: '2.1'
 orbs:
-  browser-tools: circleci/browser-tools@1.4.1
+  slack: circleci/slack@4.12.5
 jobs:
-  test:
+  notify:
     docker:
-      - image: cimg/node:13.12-browsers
+      - image: cimg/base:stable
     steps:
-      - browser-tools/install-browser-tools
-workflows: null
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
+workflows:
+  send-notification:
+    jobs:
+      - notify:
+          context: slack-secrets
