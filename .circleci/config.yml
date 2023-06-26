@@ -725,22 +725,22 @@ jobs:
   docker:
     - image: cimg/base:stable
   steps:
-    - slack/notify:
+    - notify:
       custom: |
-      {
-        "blocks": [
         {
-          "type": "section",
-          "fields": [
+          "blocks": [
           {
-            "type": "plain_text",
-            "text": "*This is a text notification*",
-            "emoji": true
+            "type": "section",
+            "fields": [
+            {
+              "type": "plain_text",
+              "text": "*This is a text notification*",
+              "emoji": true
+            }
+            ]
           }
           ]
         }
-        ]
-      }
       event: always
 workflows:
   send-notification:
