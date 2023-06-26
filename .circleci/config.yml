@@ -653,6 +653,4 @@ commands:
 workflows:
   test-command:
     jobs:
-      myjobs:
-        steps:
-          - notify
+      - notify
