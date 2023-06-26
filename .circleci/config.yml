@@ -654,7 +654,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - test-jobs:
+      - notify
 
 workflows:
   test-command:
