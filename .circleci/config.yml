@@ -654,7 +654,7 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - notify
+      - notify:
       　　context: slack-secrets
 
 workflows:
