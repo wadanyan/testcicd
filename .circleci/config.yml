@@ -655,7 +655,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - notify:
-      　　context: slack-secrets
+          context: slack-secrets
 
 workflows:
   test-command:
