@@ -649,8 +649,11 @@ commands:
                 name: << parameters.step_name >>
                 when: always
 
+jobs:
+  test-jobs:
+    - notify
 
 workflows:
   test-command:
     jobs:
-      - notify
+      - test-jobs
