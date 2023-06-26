@@ -649,11 +649,14 @@ commands:
                 name: << parameters.step_name >>
                 when: always
 
+jobs:
+  myjob:
+  docker:
+      - image: cimg/base:stable
+  steps:
+      - test-jobs:
+
 workflows:
   test-command:
     jobs:
-      myjob:
-        docker:
-          - image: cimg/base:stable
-        steps:
-          - test-jobs
+      - myjob
