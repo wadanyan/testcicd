@@ -655,5 +655,5 @@ workflows:
       myjob:
         docker:
           - image: cimg/base:stable
-          steps:
-            - test-jobs:
+        steps:
+          - test-jobs:
