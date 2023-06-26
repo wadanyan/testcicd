@@ -722,26 +722,26 @@ jobs:
         step_name: <<parameters.step_name>>
         template: <<parameters.template>>
   notify:
-  docker:
-    - image: cimg/base:stable
-  steps:
-    - notify:
-      custom: |
-        {
-          "blocks": [
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - notify:
+        custom: |
           {
-            "type": "section",
-            "fields": [
+            "blocks": [
             {
-              "type": "plain_text",
-              "text": "*This is a text notification*",
-              "emoji": true
+              "type": "section",
+              "fields": [
+              {
+                "type": "plain_text",
+                "text": "*This is a text notification*",
+                "emoji": true
+              }
+              ]
             }
             ]
           }
-          ]
-        }
-      event: always
+        event: always
 workflows:
   send-notification:
     jobs:
