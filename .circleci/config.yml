@@ -688,6 +688,9 @@ jobs:
                   "type": "section",
                   "fields": [
                     {
+                      "type": "plain_text",
+                      "text": ,
+                      "emoji": true
                     }
                   ]
                 }
