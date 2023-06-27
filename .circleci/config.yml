@@ -351,7 +351,7 @@ commands:
 
                         # Will not run if sourced from another script.
                         # This is done so this script may be tested.
-                        ORB_TEST_ENV="bats-core"
+                        ORB_TEST_ENV=""
                         if [ "${0#*"$ORB_TEST_ENV"}" = "$0" ]; then
                             # shellcheck source=/dev/null
                             . "/tmp/SLACK_JOB_STATUS"
