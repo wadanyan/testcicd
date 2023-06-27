@@ -655,8 +655,65 @@ jobs:
       - image: cimg/base:stable
     steps:
       - notify
+  slack-notification:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
+  slack-nitification-no-message:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
+  slack-nitification-only-notify:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - notify:
+          event: always
 workflows:
-  test-command:
+  test-command1:
     jobs:
       - myjob:
+          context: slack-secrets
+  test-command2:
+    jobs:
+      - slack-notification:
+          context: slack-secrets
+  test-command3:
+    jobs:
+      - slack-nitification-no-message:
+          context: slack-secrets
+  test-command4:
+    jobs:
+      - slack-nitification-only-notify:
           context: slack-secrets
