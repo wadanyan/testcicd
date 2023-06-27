@@ -333,6 +333,7 @@ commands:
                             # Escape backslashes.
                             sanitized_value="$(printf '%s' "$sanitized_value" | awk '{gsub(/\\/, "&\\"); print $0}')"
                             # Escape newlines.
+                            echo 'this is made me $0'
                             sanitized_value="$(printf '%s' "$sanitized_value" | awk 'NR > 1 { printf("\\n") } { printf("%s", $0) }')"
                             # Escape double quotes.
                             if [ "$PLATFORM" = "windows" ]; then
@@ -351,7 +352,18 @@ commands:
 
                         # Will not run if sourced from another script.
                         # This is done so this script may be tested.
-                        
+                        ORB_TEST_ENV="bats-core"
+                        if [ "${0#*"$ORB_TEST_ENV"}" = "$0" ]; then
+                            # shellcheck source=/dev/null
+                            . "/tmp/SLACK_JOB_STATUS"
+                            ShouldPost
+                            SetupEnvVars
+                            SetupLogs
+                            CheckEnvVars
+                            InstallJq
+                            BuildMessageBody
+                            PostToSlack
+                        fi
                     SLACK_SCRIPT_UTILS: |
                         #!/bin/false
                         # shellcheck shell=sh
