@@ -792,8 +792,12 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+          requires:
+            - slack-notification
       - slack-nitification-no-message:
           context: slack-secrets
+          requires:
+            - slack/on-hold
   test-command4:
     jobs:
       - slack-nitification-only-notify:
