@@ -787,7 +787,7 @@ workflows:
     jobs:
       - slack-notification:
           context: slack-secrets
-    　- slack/on-hold:
+      - slack/on-hold:
           context: slack-secrets
           filters:
             tags:
