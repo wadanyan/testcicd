@@ -798,6 +798,7 @@ workflows:
           context: slack-secrets
           requires:
             - on-hold
+          type: approval
   test-command4:
     jobs:
       - slack-nitification-only-notify:
