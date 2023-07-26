@@ -31,7 +31,6 @@ jobs:
       - run: echo <<pipeline.parameters.hello-word>>
   hello-job3:
     <<: *my-anchorjob
-    parameters:
       my-hello-word: "clear"
 workflows:
   my-workflow:
