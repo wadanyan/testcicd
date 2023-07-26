@@ -9,7 +9,7 @@ my-anchorjob: &my-anchorjob
       default: "sample hello"
   steps:
     - checkout # check out the code in the project directory
-    - run: echo <<pipeline.parameters.my-hello-word>>
+    - run: echo <<pipeline.parameters.hello-word>>
 
 parameters:
   hello-word:
