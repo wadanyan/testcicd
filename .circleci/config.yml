@@ -30,8 +30,7 @@ jobs:
       - run: echo <<pipeline.parameters.hello-word>>
   hello-job3:
     << *my-anchor-job
-    parameters:
-      my-hello-word: "job3 Hello world"
+    my-hello-word: "job3 Hello world"
 
 workflows:
   my-workflow:
