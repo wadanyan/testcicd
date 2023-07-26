@@ -1,14 +1,26 @@
 version: 2.1
 
+parameters:
+  hello-word:
+    type: string
+    default: "Hello World"
+
 jobs:
-  hello-job:
+  hello-job1:
     docker:
       - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
+  hello-job2:
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo <<pipeline.parameters.hello-word>>
 
 workflows:
   my-workflow:
     jobs:
-      - hello-job
+      - hello-job1
+      - hello-job2
