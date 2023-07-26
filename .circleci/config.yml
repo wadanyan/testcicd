@@ -29,8 +29,9 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo <<pipeline.parameters.hello-word>>
   hello-job3:
-    << *my-anchor-job
-    my-hello-word: "job3 Hello world"
+    <<: *my-anchor-job
+    parameters:
+      my-hello-word: "job3 Hello world"
 
 workflows:
   my-workflow:
