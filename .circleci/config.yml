@@ -9,7 +9,7 @@ my-anchorjob: &my-anchorjob
       default: "sample hello"
   steps:
     - checkout # check out the code in the project directory
-    - run: echo <<parameters.my-hello-word>>
+    - run: echo <<pipeline.parameters.my-hello-word>>
 
 parameters:
   hello-word:
@@ -31,7 +31,6 @@ jobs:
       - run: echo <<pipeline.parameters.hello-word>>
   hello-job3:
     <<: *my-anchorjob
-    my-hello-word: "clear"
 workflows:
   my-workflow:
     jobs:
